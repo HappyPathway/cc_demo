@@ -29,19 +29,9 @@ resource aws_security_group_rule "listing_server_ssh_from_world" {
     cidr_blocks       = ["0.0.0.0/0"]
 }
 
-resource aws_security_group_rule "listing_server_allow_web" {
-    count = "${var.mode == "connnect" ? 0 : 1}"
-    security_group_id = "${aws_security_group.listing_server_sg.id}"
-    type              = "ingress"
-    protocol          = "all"
-    to_port = 65535
-    from_port = 0
-    source_security_group_id = "${aws_security_group.webclient_sg.id}"
-    description = "Allow WebClient Server"
-}
 
 resource aws_security_group_rule "listing_server_allow_everything_internal" {
-    count = "${var.mode == "connnect" ? 1 : 0}"
+    # count = "${var.mode == "connnect" ? 1 : 0}"
     security_group_id = "${aws_security_group.listing_server_sg.id}"
     type              = "ingress"
     protocol          = "all"
