@@ -13,9 +13,7 @@ resource aws_instance "webclient" {
     tags = "${merge(var.hashi_tags, map("Name", "${var.project_name}-webclient-server-${count.index}"), map("role", "webclient-server"), map("consul-cluster-name", replace("consul-cluster-${var.project_name}-${var.hashi_tags["owner"]}", " ", "")))}"
 }
 
-output "webclient_servers" {
-    value = ["${aws_instance.webclient.*.public_dns}"]
-}
+
 
 resource "aws_lb" "webclient-lb" {
     name               = "${var.project_name}-lb"

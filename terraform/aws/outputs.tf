@@ -38,3 +38,7 @@ output "mongo_server_sg" {
 output "consul_server_sg" {
     value = "${aws_security_group.consul_server_sg.id}"
 }
+
+output "webclient_servers" {
+    value = ["${aws_instance.webclient.*.public_dns}"]
+}

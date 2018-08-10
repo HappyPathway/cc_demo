@@ -30,13 +30,34 @@ resource aws_security_group_rule "mongo_server_ssh_from_world" {
     cidr_blocks       = ["0.0.0.0/0"]
 }
 
+resource aws_security_group_rule "mongo_server_allow_listing" {
+    count = "${var.mode == "connnect" ? 0 : 1}"
+    security_group_id = "${aws_security_group.mongo_server_sg.id}"
+    type              = "ingress"
+    protocol          = "all"
+    from_port         = 0
+    to_port           = 65535
+    source_security_group_id = "${aws_security_group.listing_server_sg.id}"
+}
+
 resource aws_security_group_rule "mongo_server_allow_everything_internal" {
+    count = "${var.mode == "connnect" ? 1 : 0}"
     security_group_id = "${aws_security_group.mongo_server_sg.id}"
     type              = "ingress"
     protocol          = "all"
     from_port         = 0
     to_port           = 65535
     cidr_blocks       = ["${data.aws_vpc.default.cidr_block}"]
+}
+
+resource aws_security_group_rule "mongo_server_allow_product" {
+    count = "${var.mode == "connnect" ? 0 : 1}"
+    security_group_id = "${aws_security_group.mongo_server_sg.id}"
+    type              = "ingress"
+    protocol          = "all"
+    from_port         = 0
+    to_port           = 65535
+    source_security_group_id = "${aws_security_group.product_server_sg.id}"
 }
 
 resource aws_security_group_rule "mongo_server_allow_everything_out" {
