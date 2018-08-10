@@ -13,9 +13,6 @@ resource aws_instance "mongo" {
     tags = "${merge(var.hashi_tags, map("Name", "${var.project_name}-mongo-server-${count.index}"), map("role", "mongo-server"), map("consul-cluster-name", replace("consul-cluster-${var.project_name}-${var.hashi_tags["owner"]}", " ", "")))}"
 }
 
-output "mongo_servers" {
-    value = ["${aws_instance.mongo.*.public_dns}"]
-}
 
 # Security groups
 

@@ -13,10 +13,6 @@ resource aws_instance "listing-api" {
     tags = "${merge(var.hashi_tags, map("Name", "${var.project_name}-listing-api-server-${count.index}"), map("role", "listing-api-server"), map("consul-cluster-name", replace("consul-cluster-${var.project_name}-${var.hashi_tags["owner"]}", " ", "")))}"
 }
 
-output "listing_api_servers" {
-    value = ["${aws_instance.listing-api.*.public_dns}"]
-}
-
 # Security groups
 
 resource aws_security_group "listing_server_sg" {

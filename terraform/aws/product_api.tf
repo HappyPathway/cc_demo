@@ -13,9 +13,7 @@ resource aws_instance "product-api" {
     tags = "${merge(var.hashi_tags, map("Name", "${var.project_name}-product-api-server-${count.index}"), map("role", "product-api-server"), map("consul-cluster-name", replace("consul-cluster-${var.project_name}-${var.hashi_tags["owner"]}", " ", "")))}"
 }
 
-output "product_api_servers" {
-    value = ["${aws_instance.product-api.*.public_dns}"]
-}
+
 
 # Security groups
 

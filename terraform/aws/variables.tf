@@ -17,6 +17,9 @@ variable "ssh_key_name" {
   description = "Name of existing AWS ssh key"
 }
 
+variable "consul_servers_count" {
+  default = 3
+}
 # Optional
 
 # By default, we start in a "noconnect" mode --- this tells Terraform
