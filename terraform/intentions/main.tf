@@ -1,8 +1,10 @@
-variable "consul_cluster" {
-    type = "string"
-    description = "Consul Cluster Address"
+variable "connect_ws" {
+
 }
 
+variable "connect_org" {
+
+}
 variable "deny_product" {
     default = false
 }
@@ -10,14 +12,24 @@ variable "deny_product" {
 variable "deny_listing" {
     default = false
 }
+
 variable "consul_dc" {
   type = "string"
   description = "Consul DataCenter"
   default = "dc1"
 }
 
+
+data "terraform_remote_state" "connect" {
+  backend = "atlas"
+  config {
+    name = "${var.connect_org}/${var.connect_ws}"
+  }
+}
+
+
 provider "consul" {
-  address    = "${var.consul_cluster}"
+  address    = "${element(data.terraform_remote_state.connect.consul_servers, 0)}:8500"
   datacenter = "${var.consul_dc}"
 }
 
