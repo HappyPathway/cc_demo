@@ -8,24 +8,4 @@ pip3 install pymongo
 # download the apply
 mkdir /home/ubuntu/src
 cd /home/ubuntu/src
-git clone https://github.com/norhe/product-service.git
-
-# systemd
-
-cat <<EOF | sudo tee /lib/systemd/system/product.service
-[Unit]
-Description=product.py - Listing service API
-After=network.target
-
-[Service]
-Type=simple
-User=ubuntu
-ExecStart=/usr/bin/python3 /home/ubuntu/src/product-service/product.py
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-sudo systemctl daemon-reload
-sudo systemctl enable product.service
+git clone https://github.com/thomashashi/product-service.git
