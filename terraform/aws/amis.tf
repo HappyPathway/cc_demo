@@ -8,81 +8,42 @@ data "aws_ami" "consul" {
     }
 }
 
-data "aws_ami" "mongo-noconnect" {
+data "aws_ami" "mongo" {
     most_recent = true
     owners      = ["753646501470"] # hc-sc-demos-2018
 
     filter {
         name   = "name"
-        values = ["east-aws-ubuntu-mongodb-noconnect-*"]
+        values = ["east-aws-ubuntu-mongodb-${var.mode}-*"]
     }
 }
 
-data "aws_ami" "mongo-connect" {
+data "aws_ami" "product-api" {
     most_recent = true
     owners      = ["753646501470"] # hc-sc-demos-2018
 
     filter {
         name   = "name"
-        values = ["east-aws-ubuntu-mongodb-connect-*"]
+        values = ["east-aws-ubuntu-product-${var.mode}-*"]
     }
 }
 
-data "aws_ami" "product-api-noconnect" {
+data "aws_ami" "listing-api" {
     most_recent = true
     owners      = ["753646501470"] # hc-sc-demos-2018
 
     filter {
         name   = "name"
-        values = ["east-aws-ubuntu-product-noconnect-*"]
+        values = ["east-aws-ubuntu-listing-server-${var.mode}-*"]
     }
 }
 
-data "aws_ami" "product-api-connect" {
-    most_recent = true
-    owners      = ["753646501470"] # hc-sc-demos-2018
 
-    filter {
-        name   = "name"
-        values = ["east-aws-ubuntu-product-connect-*"]
-    }
-}
-
-data "aws_ami" "listing-api-connect" {
-    most_recent = true
-    owners      = ["753646501470"] # hc-sc-demos-2018
-
-    filter {
-        name   = "name"
-        values = ["east-aws-ubuntu-listing-server-connect-*"]
-    }
-}
-
-data "aws_ami" "listing-api-noconnect" {
-    most_recent = true
-    owners      = ["753646501470"] # hc-sc-demos-2018
-
-    filter {
-        name   = "name"
-        values = ["east-aws-ubuntu-listing-server-noconnect-*"]
-    }
-}
-
-data "aws_ami" "webclient-connect" {
+data "aws_ami" "webclient" {
     most_recent = true
     owners      = ["753646501470"] # hc-sc-demos-2018
     filter {
         name   = "name"
-        values = ["east-aws-ubuntu-webclient-connect-*"]
+        values = ["east-aws-ubuntu-webclient-${var.mode}-*"]
     }
-}
-
-data "aws_ami" "webclient-noconnect" {
-    most_recent = true
-    owners      = ["753646501470"] # hc-sc-demos-2018
-    filter {
-        name   = "name"
-        values = ["east-aws-ubuntu-webclient-noconnect-*"]
-    }
-
 }
