@@ -113,6 +113,8 @@ resource aws_security_group_rule "webclient_allow_everything_internal" {
     security_group_id = "${aws_security_group.webclient_sg.id}"
     type              = "ingress"
     protocol          = "all"
+    to_port = 65535
+    from_port = 0
     cidr_blocks       = ["${data.aws_vpc.default.cidr_block}"]
 }
 

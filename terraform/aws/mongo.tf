@@ -46,6 +46,8 @@ resource aws_security_group_rule "mongo_server_allow_everything_internal" {
     security_group_id = "${aws_security_group.mongo_server_sg.id}"
     type              = "ingress"
     protocol          = "all"
+    to_port = 65535
+    from_port = 0
     cidr_blocks       = ["${data.aws_vpc.default.cidr_block}"]
     description = "Allow Everything Internal"
 }
@@ -55,6 +57,8 @@ resource aws_security_group_rule "mongo_server_allow_product" {
     security_group_id = "${aws_security_group.mongo_server_sg.id}"
     type              = "ingress"
     protocol          = "all"
+    to_port = 65535
+    from_port = 0
     source_security_group_id = "${aws_security_group.product_server_sg.id}"
     description = "Allow Product Server"
 }
