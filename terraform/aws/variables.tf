@@ -45,10 +45,7 @@ variable "client_machine_type" {
   default     = "t2.micro"
 }
 
-variable "consul_servers_count" {
-  description = "How many Consul servers to create in each region"
-  default     = "3"
-}
+
 
 variable "client_db_count" {
   description = "The number of client machines to create in each region"
