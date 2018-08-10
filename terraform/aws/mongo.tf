@@ -38,6 +38,7 @@ resource aws_security_group_rule "mongo_server_allow_listing" {
     from_port         = 0
     to_port           = 65535
     source_security_group_id = "${aws_security_group.listing_server_sg.id}"
+    description = "Allow Listing Server"
 }
 
 resource aws_security_group_rule "mongo_server_allow_everything_internal" {
@@ -48,6 +49,7 @@ resource aws_security_group_rule "mongo_server_allow_everything_internal" {
     from_port         = 0
     to_port           = 65535
     cidr_blocks       = ["${data.aws_vpc.default.cidr_block}"]
+    description = "Allow Everything Internal"
 }
 
 resource aws_security_group_rule "mongo_server_allow_product" {
@@ -58,6 +60,7 @@ resource aws_security_group_rule "mongo_server_allow_product" {
     from_port         = 0
     to_port           = 65535
     source_security_group_id = "${aws_security_group.product_server_sg.id}"
+    description = "Allow Product Server"
 }
 
 resource aws_security_group_rule "mongo_server_allow_everything_out" {
