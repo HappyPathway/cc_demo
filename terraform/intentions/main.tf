@@ -39,7 +39,7 @@ resource "consul_intention" "deny_product" {
     source_name      = "web_client"
     destination_name = "product"
     action           = "deny"
-    datacenter = "${var.consul_dc}"
+    #datacenter = "${var.consul_dc}"
 }
 
 resource "consul_intention" "allow_product" {
@@ -47,7 +47,7 @@ resource "consul_intention" "allow_product" {
     source_name      = "web_client"
     destination_name = "product"
     action           = "allow"
-    datacenter = "${var.consul_dc}"
+    #datacenter = "${var.consul_dc}"
 }
 
 resource "consul_intention" "deny_listing" {
@@ -55,7 +55,7 @@ resource "consul_intention" "deny_listing" {
     source_name      = "web_client"
     destination_name = "listing"
     action           = "deny"
-    datacenter = "${var.consul_dc}"
+    #datacenter = "${var.consul_dc}"
 }
 
 resource "consul_intention" "allow_listing" {
@@ -63,5 +63,5 @@ resource "consul_intention" "allow_listing" {
     source_name      = "web_client"
     destination_name = "listing"
     action           = "allow"
-    datacenter = "${var.consul_dc}"
+    #datacenter = "${var.consul_dc}"
 }
