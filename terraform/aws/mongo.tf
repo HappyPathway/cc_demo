@@ -35,8 +35,8 @@ resource aws_security_group_rule "mongo_server_allow_listing" {
     security_group_id = "${aws_security_group.mongo_server_sg.id}"
     type              = "ingress"
     protocol          = "all"
-    from_port         = 0
-    to_port           = 65535
+    # from_port         = 0
+    # to_port           = 65535
     source_security_group_id = "${aws_security_group.listing_server_sg.id}"
     description = "Allow Listing Server"
 }
@@ -57,8 +57,8 @@ resource aws_security_group_rule "mongo_server_allow_product" {
     security_group_id = "${aws_security_group.mongo_server_sg.id}"
     type              = "ingress"
     protocol          = "all"
-    to_port = 65535
-    from_port = 0
+    # to_port = 65535
+    # from_port = 0
     source_security_group_id = "${aws_security_group.product_server_sg.id}"
     description = "Allow Product Server"
 }
